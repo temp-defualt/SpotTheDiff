@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0" />
+    <meta name="author" content="Tamar, Yarden & Lee">
+    <meta name="description" content="Interactive Spot the Differnce">
+    <title>Spot the Difference</title>
+
+    <!-- CSS  -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="css/materialize.min.css" type="text/css" rel="stylesheet" media="screen,projection" />
+    <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection" />
+    <style>
+        #canvas_game {
+            user-select: none;
+            -moz-user-select: none;
+            -webkit-user-select: none;
+            -ms-user-select: none;
+        }
+        #peanuts {
+            user-select: none;
+            -moz-user-select: none;
+            -webkit-user-select: none;
+            -ms-user-select: none;
+            filter: blur(80px);
+        }
+        #spot {
+            margin: 0 !important;
+            margin-left: auto !important;
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="pink accent-2" role="navigation">
+        <div class="nav-wrapper container"><a id="logo-container" href="#" class="brand-logo">SpotTheDiff</a>
+            <ul class="right hide-on-med-and-down">
+                <li><a href="#"><i class="material-icons">menu</i></a>
+                </li>
+            </ul>
+
+            <ul id="nav-mobile" class="sidenav">
+                <li><a href="#"><i class="material-icons">menu</i></a></li>
+                <li class="bold"><a href="index.html" class="waves-effect waves-teal">Home</a></li>
+            </ul>
+            <a href="#" data-target="nav-mobile" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+        </div>
+    </nav>
+
+
+    <div class="section no-pad-bot" id="index-banner">
+        <div class="container" id="spot">
+            <div class="col s3 m3 l3 offset-s5 offset-m5 offset-l5" style="position:relative">
+                <canvas id="canvas_game" width="300" height="200" style="position: relative; left: 0; top: 0; "></canvas>
+                <img src="../spot/level1_bottom.jpg" id="peanuts" width="300" height="200" style="position: absolute; left: 0; top: 200px;">
+                <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <footer class="page-footer purple accent-1">
+        <div class="container">
+            <div class="row">
+                <div class="col l6 s12">
+                    <h5 class="white-text">Company Bio</h5>
+                    <p class="grey-text text-lighten-4">We are a team of college students working on this project like it's our full time job.</p>
+                    <br />
+                    <br />
+
+
+                </div>
+            </div>
+        </div>
+        <div class="footer-copyright">
+            <div class="container">
+                Made by <a class="orange-text text-lighten-3" href="#">Tamar, Yarden & Lee</a>
+            </div>
+        </div>
+    </footer>
+
+
+    <!--  Scripts-->
+    <script type="text/javascript" src="js/jquery-3.3.1.min.js"></script>
+    <script type="text/javascript" src="js/materialize.min.js"></script>
+    <script type="text/javascript" src="js/init.js"></script>
+    <script type="text/javascript" src="js/pressure.min.js"></script>
+    <script type="text/javascript" src="js/jquery.pressure.min.js"></script>
+
+    <script src="puzzle.js"></script>
+    <script>
+        $(function() {
+            Pressure.set('#peanuts', {
+                change: function(force, event) {
+                    this.style.webkitFilter = 'blur(' + Pressure.map(force, 0, 0.7, 80, 0) + 'px)';
+                },
+
+                end: function() {
+                    this.style.webkitFilter = 'blur(80px)';
+                },
+
+                unsupported: function() {
+                    this.innerHTML = 'Your device / browser does not support this :(';
+                }
+            });
+
+
+        });
+    </script>
+
+</body>
+
+</html>
